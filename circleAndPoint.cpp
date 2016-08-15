@@ -1,5 +1,23 @@
-#include <bits/stdc++.h>
+/**==================================
+ | Author: tjandbj
+ | OJ: CF
+ | Kind:计算几何 
+ | Date: 
+ | Describe:给定两堆点，判断是否存在一个圆分开这两堆点。
+ |          
+ |          
+ =================================**/
 
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#include <queue>
+#include <vector>
+#include <cmath>
+#include <cstdlib>
+
+typedef long long ll;
 using namespace std;
 const double PI = acos(-1.0);
 struct Point{
