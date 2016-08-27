@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# zhangxiaoyang.hit[at]gmail.com
 
 import re
 
