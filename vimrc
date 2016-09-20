@@ -12,8 +12,8 @@ colorscheme ron
 set ts=4
 set sw=4
 
-"colorscheme molokai
-colorscheme solarized
+colorscheme molokai
+"colorscheme solarized
 "colorscheme dracula
 
 set lines=100 columns=60
@@ -47,16 +47,6 @@ set shiftwidth=4
 autocmd BufNewFile *.cpp exec ":call SetTitle()"
 func SetTitle()
 if &filetype == 'cpp'
-"call setline(1, "/**==================================")
-"call setline(2, " | Author: tjandbj")
-"call setline(3, " | OJ: ")
-"call setline(4, " | Kind: ")
-"call setline(5, " | Date: ")
-"call setline(6, " | Describe:")
-"call setline(7, " |          ")
-"call setline(8, " |          ")
-"call setline(9, " =================================**/")
-"call setline(10, "")
 call setline(1, "#include <iostream>")
 call setline(2, "#include <cstdio>")
 call setline(3, "#include <cstring>")
@@ -65,13 +55,17 @@ call setline(5, "#include <queue>")
 call setline(6, "#include <vector>")
 call setline(7, "#include <cmath>")
 call setline(8, "#include <cstdlib>")
-call setline(9, "")
-call setline(10, "typedef long long ll;")
-call setline(11, "")
-call setline(12, "int main(){")
-call setline(13, "    ")
-call setline(14, "    return 0;")
-call setline(15, "}")
+call setline(9, "#include <map>")
+call setline(10, "#include <stack>")
+call setline(11, "#include <set>")
+call setline(12, "#include <ctime>")
+call setline(13, "")
+call setline(14, "typedef long long ll;")
+call setline(15, "")
+call setline(16, "int main(){")
+call setline(17, "    ")
+call setline(18, "    return 0;")
+call setline(19, "}")
 endif
 endfunc
 
@@ -79,5 +73,3 @@ map <S-k> <S-i>//<Esc>j<S-i><Esc>
 imap <S-k> <Esc><S-i>//<Esc>j<S-i>
 map <C-k> <S-i><delete><delete><Esc>j
 imap <C-k> <Esc><S-i><delete><delete><Esc>j<S-i>
-
-
