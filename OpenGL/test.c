@@ -29,7 +29,8 @@ int main(int argc, char *argv[])
     glutInitWindowPosition(0, 0);
     glutInitWindowSize(300, 300);
     glutCreateWindow("OpenGL 3D View");
-    init(); glutDisplayFunc(display);
+    init(); 
+    glutDisplayFunc(display);
     glutMainLoop();
     return 0;
 }
