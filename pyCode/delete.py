@@ -52,7 +52,6 @@ def getUUID():
 
     # print data
 
-    # window.QRLogin.code = 200; window.QRLogin.uuid = "oZwt_bFfRg==";
     regx = r'window.QRLogin.code = (\d+); window.QRLogin.uuid = "(\S+?)"'
     pm = re.search(regx, data)
 
@@ -109,7 +108,7 @@ def waitForLogin():
     code = pm.group(1)
 
     if code == '201': #已扫描
-        print '成功扫描,请在手机上点击确认以登录'
+        print '成功扫描,请在手机上点击确认'
         tip = 0
     elif code == '200': #已登录
         print '登录ing'
@@ -184,8 +183,6 @@ def webwxinit():
     My = dic['User']
 
     ErrMsg = dic['BaseResponse']['ErrMsg']
-    # if len(ErrMsg) > 0:
-    #   print ErrMsg
 
     Ret = dic['BaseResponse']['Ret']
     if Ret != 0:
@@ -258,8 +255,6 @@ def createChatroom(UserNames):
             DeletedList.append(Member['UserName'])
 
     ErrMsg = dic['BaseResponse']['ErrMsg']
-    # if len(ErrMsg) > 0:
-    #   print ErrMsg
 
     return ChatRoomName, DeletedList
 
@@ -280,8 +275,6 @@ def deleteMember(ChatRoomName, UserNames):
 
     dic = json.loads(data)
     ErrMsg = dic['BaseResponse']['ErrMsg']
-    # if len(ErrMsg) > 0:
-    #   print ErrMsg
 
     Ret = dic['BaseResponse']['Ret']
     if Ret != 0:
@@ -312,8 +305,6 @@ def addMember(ChatRoomName, UserNames):
             DeletedList.append(Member['UserName'])
 
     ErrMsg = dic['BaseResponse']['ErrMsg']
-    # if len(ErrMsg) > 0:
-    #   print ErrMsg
 
     return DeletedList
 
@@ -367,12 +358,6 @@ def main():
         print '[',progress_str,''.join('-'*(10-len(progress_str))),']',
         print '(当前,你被%d人删除,好友共%d人'%(len(result),len(MemberList)),'\r',
 
-        # print '第%s组...' % (i + 1)
-
-        # print ', '.join(NickNames)
-        # print '回车键继续...'
-        # raw_input()
-
         # 新建群组/添加成员
         if ChatRoomName == '':
             (ChatRoomName, DeletedList) = createChatroom(UserNames)
@@ -419,7 +404,6 @@ if __name__ == '__main__' :
 
     print '这是一个可以查询删掉你微信好友的人的小脚本'
     print '查询结果可能会让人怀疑人生哦,请小心使用...'
-    print '不论结果是什么，请继续美好的明天呀'
     print '回车键继续...'
     raw_input()
 
