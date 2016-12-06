@@ -13,7 +13,7 @@ import math
 
 DEBUG = False
 
-MAX_GROUP_NUM = 35 # 每组人数
+MAX_GROUP_NUM = 30 
 
 QRImagePath = os.getcwd() + '/qrcode.jpg'
 
@@ -89,7 +89,7 @@ def showQRImage():
     else:
         os.system('call %s' % QRImagePath)
 
-    print '请使用微信扫描二维码以登录'
+    print '请用手机微信扫描二维码'
 
 def waitForLogin():
     global tip, base_uri, redirect_uri
@@ -112,7 +112,7 @@ def waitForLogin():
         print '成功扫描,请在手机上点击确认以登录'
         tip = 0
     elif code == '200': #已登录
-        print '正在登录...'
+        print '登录ing'
         regx = r'window.redirect_uri="(\S+?)";'
         pm = re.search(regx, data)
         redirect_uri = pm.group(1) + '&fun=new'
@@ -131,18 +131,6 @@ def login():
     data = response.read()
 
     # print data
-
-    '''
-        <error>
-            <ret>0</ret>
-            <message>OK</message>
-            <skey>xxx</skey>
-            <wxsid>xxx</wxsid>
-            <wxuin>xxx</wxuin>
-            <pass_ticket>xxx</pass_ticket>
-            <isgrayscale>1</isgrayscale>
-        </error>
-    '''
 
     doc = xml.dom.minidom.parseString(data)
     root = doc.documentElement
@@ -225,7 +213,7 @@ def webwxgetcontact():
     dic = json.loads(data)
     MemberList = dic['MemberList']
 
-    # 倒序遍历,不然删除的时候出问题..
+    # 倒序遍历,不然删除会出问题..
     SpecialUsers = ['newsapp', 'fmessage', 'filehelper', 'weibo', 'qqmail', 'fmessage', 'tmessage', 'qmessage', 'qqsync', 'floatbottle', 'lbsapp', 'shakeapp', 'medianote', 'qqfriend', 'readerapp', 'blogapp', 'facebookapp', 'masssendapp', 'meishiapp', 'feedsapp', 'voip', 'blogappweixin', 'weixin', 'brandsessionholder', 'weixinreminder', 'wxid_novlwrv3lqwv11', 'gh_22b87fa7cb3c', 'officialaccounts', 'notification_messages', 'wxid_novlwrv3lqwv11', 'gh_22b87fa7cb3c', 'wxitil', 'userexperience_alarm', 'notification_messages']
     for i in xrange(len(MemberList) - 1, -1, -1):
         Member = MemberList[i]
@@ -395,14 +383,8 @@ def main():
         if DeletedCount > 0:
             result += DeletedList
 
-        # print '找到%s个被删好友' % DeletedCount
-        # raw_input()
-
         # 删除成员
         deleteMember(ChatRoomName, UserNames)
-
-    # todo 删除群组
-
 
     resultNames = []
     for Member in MemberList:
@@ -418,8 +400,6 @@ def main():
     print '\n'.join(resultNames)
     print '-----------------------------------'
 
-# windows下编码问题修复
-# http://blog.csdn.net/heyuxuanzee/article/details/8442718
 class UnicodeStreamFilter:  
     def __init__(self, target):  
         self.target = target  
@@ -437,7 +417,9 @@ if sys.stdout.encoding == 'cp936':
 
 if __name__ == '__main__' :
 
-    print '本程序的查询结果可能会引起一些心理上的不适,请小心使用...'
+    print '这是一个可以查询删掉你微信好友的人的小脚本'
+    print '查询结果可能会让人怀疑人生哦,请小心使用...'
+    print '不论结果是什么，请继续美好的明天呀'
     print '回车键继续...'
     raw_input()
 
