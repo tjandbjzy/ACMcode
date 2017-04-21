@@ -1,54 +1,52 @@
-#include<iostream>
-#include<cstdio>
-#include<vector>
-#include<algorithm>
-#include<cstring>
-#define X first
-#define Y second
-#define mp make_pair
-using namespace std;
+#include <cstdio>
+#include <cmath>
+#include <iostream>
+#include <algorithm>
 
-const int maxn=1e6+10;
-typedef unsigned long long LL;
 
-const LL P=123;
-int n,m;
-
-LL pw[maxn];
-LL ha[maxn];
-void pre(){
-    memset(ha,0,sizeof(ha));
-    pw[0]=1;
-    for(int i=1;i<maxn;i++) pw[i]=pw[i-1]*P;
-}
+const int N = 1000 + 10;
+int a[N];
 
 int main(){
-	freopen("E.in", "r", stdin);
-    while(~scanf("%d%d",&n,&m)){
-    pre();
-	vector<pair<int,int> > egs;
-    for(int i=0;i<m;i++){
-        int u,v; 
-        scanf("%d%d",&u,&v);
-        egs.push_back(mp(u,v));
-        ha[u]+=pw[v];
-        ha[v]+=pw[u];
-    }
-    LL ans=0;
-    for(int i=0;i<m;i++){
-        int u=egs[i].X,v=egs[i].Y;
-        if(ha[u]+pw[u]==ha[v]+pw[v]) ans++;
-    }
-    sort(ha+1,ha+n+1);
-    for(int i=1;i<n;i++){
-        if(ha[i]==ha[i+1]){
-            int ed=i;
-            while(ed+1<=n&&ha[ed]==ha[ed+1]) ed++;
-            LL len=ed-i+1;
-            ans+=len*(len-1)/2;
-            i=ed;
+    int n;
+    while(std::cin >> n){
+        for(int i = 0; i < n; ++i){
+            std::cin >> a[i];
+        }
+        std::sort(a, a + n);
+        if(n == 1){
+            puts("2");
+        }else if(n == 2){
+            if(a[1] - a[0] <= 10){
+                puts("1");
+            }else{
+                puts("4");
+            }
+        }else{
+            int ans = 0, i;
+            for(i = 0; i < n - 2;){
+                if(a[i + 1] - a[i] > 10){
+                    ans += 2;
+                    i++;
+                }else if(a[i + 2] - a[i + 1] > 10){
+                    ans += 1;
+                    i += 2;
+                }else{
+                    i += 3;
+                }
+            }
+            if(n - i == 1){
+                ans += 2;
+            }else if(n - i == 2){
+                if(a[n - 1] - a[n - 2] <= 10){
+                    ans += 1;
+                }else{
+                    ans += 4;
+                }
+            }
+            std::cout << ans << std::endl;
         }
     }
-    printf("%lld\n",ans);}
+
     return 0;
 }
