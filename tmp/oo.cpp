@@ -13,8 +13,21 @@
 
 typedef long long ll;
 
+int *cal(){
+    int a[2];
+    a[0] = 3;
+    a[1] = 4;
+    int *x = a;
+    return x;
+}
+
 int main(){
-    printf("Hello Amy\n");
-    
+    int a[2];
+    a[0] = 1;
+    a[1] = 2;
+    int *x = a;
+    std::cout << x[0] << " " << x[1] << std::endl;
+    x = cal();
+    std::cout << x[0] << " " << x[1] << std::endl;
     return 0;
 }
